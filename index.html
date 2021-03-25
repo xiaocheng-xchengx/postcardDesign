@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <title>Postcard Generator</title>
+    <link rel="stylesheet" type="text/css" href="css/html5reset.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+  </head>
+
+  <body>
+
+    <header>
+      <h1>Welcome!</h1>
+    </header>
+
+    <section id = "block1">
+      <p>How are you feeling today?</p>
+      <form action="" method="post">
+        <input type="radio" id="mood1" name="mood" value="great" class = "question1">
+        <label for="mood1">Feeling great!</label><br>
+        <input type="radio" id="mood2" name="mood" value="normal" class = "question1">
+        <label for="mood2">Just normal.</label><br>
+        <input type="radio" id="mood3" name="mood" value="nah" class = "question1">
+        <label for="mood3">A bit blue :(</label>
+      </form>
+    </section>
+
+    <section id = "block2">
+      <p>What's the weather like in your city?</p>
+      <form action="" method="post">
+        <input type="radio" id="weather1" name="weather" value="Sunny" class = "question2">
+        <label for="weather1">Sunny</label><br>
+        <input type="radio" id="weather2" name="weather" value="Rainy" class = "question2">
+        <label for="weather2">Rainy</label><br>
+        <input type="radio" id="weather3" name="weather" value="Cloudy" class = "question2">
+        <label for="weather3">Cloudy</label><br>
+        <input type="radio" id="weather4" name="weather" value="Foggy" class = "question2">
+        <label for="weather4">Foggy</label><br>
+        <input type="radio" id="weather5" name="weather" value="Snowy" class = "question2">
+        <label for="weather5">Snowy</label>
+      </form>
+    </section>
+
+    <section id = "block3">
+      <p>Who do you want to send it to?</p>
+      <form action="" method="post">
+        <input type="radio" id="person1" name="people" value="Family" class = "question3">
+        <label for="person1">Family</label><br>
+        <input type="radio" id="person2" name="people" value="Friend" class = "question3">
+        <label for="person2">Friend</label><br>
+        <input type="radio" id="person3" name="people" value="Partner" class = "question3">
+        <label for="person3">Partner</label><br>
+        <input type="radio" id="person4" name="people" value="Secret-Crush" class = "question3">
+        <label for="person4">Secret Crush</label>
+      </form>
+    </section>
+
+    <section id = "block4">
+      <label for="yourName" class="message">What's your name?</label><br>
+      <input type="text" id="yourName" name="yourName" class="textfield textfield1"><br>
+      <label for="otherName" class="message">Who are you sending the postcard to?</label><br>
+      <input type="text" id="otherName" name="otherName" class="textfield">
+    </section>
+
+    <section id = "block5">
+      <label for="postcardContent" class="message">What message would you like to include?</label>
+      <textarea id="postcardContent" name="postcard" rows="5" cols="33" maxlength="100" placeholder="input your message here."></textarea>
+      <div class = "characterCount">
+        <span>Character Count: </span>
+        <span id = "characterCount">0</span>
+        <span>/ 100</span>
+      </div>
+    </section>
+
+    <div class = "button-container">
+      <button class = "disabled">Back</button>
+      <button class = "active">Next</button>
+    </div>
+
+    <footer>
+      <p>Xiao Cheng, SI579 Final Project</p>
+    </footer>
+
+    <script src="js/index.js"></script>
+    <script src="js/postcard.js"></script>
+
+  </body>
+</html>
