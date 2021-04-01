@@ -53,17 +53,14 @@ function saveAs(uri, filename) {
 
 // Snapshot
 function takeshot() {
-  html2canvas(document.querySelector("#card"),{useCORS: true,allowTaint: true,}).then(canvas => {
-    var dataURL = canvas.toDataURL( "image/png" );
-    var data = atob( dataURL.substring( "data:image/png;base64,".length ) ),
-      asArray = new Uint8Array(data.length);
+  html2canvas($("#card"), {
+    onrendered: function(canvas) {
+      theCanvas = canvas;
 
-    for( var i = 0, len = data.length; i < len; ++i ) {
-      asArray[i] = data.charCodeAt(i);
+      canvas.toBlob(function(blob) {
+        saveAs(blob, "Postcard.png");
+      });
     }
-
-    var blob = new Blob( [ asArray.buffer ], {type: "image/png"} );
-    saveAs(blob, "photo.png");
   });
 }
 
