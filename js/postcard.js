@@ -53,7 +53,7 @@ function saveAs(uri, filename) {
 
 // Snapshot
 function takeshot() {
-  html2canvas($("#card"), {
+  html2canvas(document.querySelector("#card"), {
     onrendered: function(canvas) {
       theCanvas = canvas;
 
