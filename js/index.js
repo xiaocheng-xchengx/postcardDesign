@@ -4,6 +4,7 @@ const optionButtons3 = document.getElementsByClassName("question3");
 const sections = document.getElementsByTagName("section");
 const nextButton = document.getElementsByClassName("button-container")[0].getElementsByTagName("button")[1];
 const backButton = document.getElementsByClassName("button-container")[0].getElementsByTagName("button")[0];
+let answers = [-1, -1, -1];
 //let contentValue = "";
 let senderPerson = "";
 let recipient = "";
@@ -213,5 +214,26 @@ function changeNextButtonContent(counter){
 function goToPostcardPage(){
   content = document.getElementsByTagName("textarea")[0].value;
   localStorage.setItem("localStorageOne", content);
+  
+  for (i = 0; i < optionButtons1.length; i++) {
+    if(optionButtons1[i].checked){
+      answers[0] = i;
+    }
+  }
+  
+  for (i = 0; i < optionButtons2.length; i++) {
+    if(optionButtons2[i].checked){
+      answers[1] = i;
+    }
+  }
+  
+  for (i = 0; i < optionButtons3.length; i++) {
+    if(optionButtons3[i].checked){
+      answers[2] = i;
+    }
+  }
+  
+  localStorage.setItem("localStorageQuestions", JSON.stringify(answers));
+  
   window.open("postcard.html", "_self");
 }
