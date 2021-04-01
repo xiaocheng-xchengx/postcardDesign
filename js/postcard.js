@@ -53,7 +53,7 @@ function saveAs(uri, filename) {
 
 // Snapshot
 function takeshot() {
-  html2canvas(document.querySelector("#card")).then(canvas => {
+  html2canvas(document.querySelector("#card"),{useCORS: true,allowTaint: true,}).then(canvas => {
     var dataURL = canvas.toDataURL( "image/png" );
     var data = atob( dataURL.substring( "data:image/png;base64,".length ) ),
       asArray = new Uint8Array(data.length);
