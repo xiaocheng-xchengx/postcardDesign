@@ -31,20 +31,40 @@ document.getElementsByTagName("i")[1].addEventListener("mouseout", (event) => {
   document.getElementsByTagName("i")[1].setAttribute("class", "far fa-save");
 })
 
+function saveAs(uri, filename) {
+  var link = document.createElement('a');
+  console.log("save");
+  if (typeof link.download === 'string') {
+    link.href = uri;
+    link.download = filename;
+
+    //Firefox requires the link to be in the body
+    document.body.appendChild(link);
+
+    //simulate click
+    link.click();
+
+    //remove the link when done
+    document.body.removeChild(link);
+  } else {
+    window.open(uri);
+  }
+}
+
 // Snapshot
 function takeshot() {
-  html2canvas(document.querySelector("#card")).then(canvas => {
-        var dataURL = canvas.toDataURL( "image/png" );
-        var data = atob( dataURL.substring( "data:image/png;base64,".length ) ),
-            asArray = new Uint8Array(data.length);
+  chtml2canvas(document.querySelector("#card")).then(canvas => {
+    var dataURL = canvas.toDataURL( "image/png" );
+    var data = atob( dataURL.substring( "data:image/png;base64,".length ) ),
+      asArray = new Uint8Array(data.length);
 
-        for( var i = 0, len = data.length; i < len; ++i ) {
-            asArray[i] = data.charCodeAt(i);
-        }
+    for( var i = 0, len = data.length; i < len; ++i ) {
+      asArray[i] = data.charCodeAt(i);
+    }
 
-        var blob = new Blob( [ asArray.buffer ], {type: "image/png"} );
-        saveAs(blob, "photo.png");
-    });
+    var blob = new Blob( [ asArray.buffer ], {type: "image/png"} );
+    saveAs(blob, "photo.png");
+  });
 }
 
 //Postcard theme starts here
