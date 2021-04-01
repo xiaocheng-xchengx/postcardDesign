@@ -53,15 +53,11 @@ function saveAs(uri, filename) {
 
 // Snapshot
 function takeshot() {
-  html2canvas(document.querySelector("#card"), {
-    onrendered: function(canvas) {
-      theCanvas = canvas;
-
-      canvas.toBlob(function(blob) {
-        saveAs(blob, "Postcard.png");
-      });
-    }
-  });
+  html2canvas(document.getElementById("card"), {allowTaint: true}).then(function(canvas) 
+	{
+	  document.getElementById("output").appendChild(canvas);
+	  saveAs(canvas.toDataURL(), 'postcard.png');
+	});
 }
 
 //Postcard theme starts here
