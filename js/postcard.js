@@ -101,7 +101,7 @@ function takeShot() {
 	});
 }
 
-// Snapshot
+// Send email
 function sendEmail() {
   senderV = Base64.encode(sender);
   receiverV = Base64.encode(receiver);
@@ -109,16 +109,28 @@ function sendEmail() {
   answersV = Base64.encode(JSON.stringify(stored_answers));
   queryParams = `?s=${senderV}%26r=${receiverV}%26c=${contentV}%26a=${answersV}`;
   fullLink = "https://xiaocheng-xchengx.github.io/postcardDesign/postcard.html" + queryParams
-  console.log("queryParams:"+fullLink);
+  //console.log("queryParams:"+fullLink);
 
   subject = `Postcard from ${sender}`
   body = `Check out the postcard: ${fullLink}`
-  console.log("body:"+body);
+  //console.log("body:"+body);
 
   window.open(`mailto:?subject=${subject}&body=${body}`);
 }
 
-
+// Tweet
+function tweet() {
+  senderV = Base64.encode(sender);
+  receiverV = Base64.encode(receiver);
+  contentV = Base64.encode(content);
+  answersV = Base64.encode(JSON.stringify(stored_answers));
+  queryParams = `%3fs=${senderV}%26r=${receiverV}%26c=${contentV}%26a=${answersV}`;
+  fullLink = "https://xiaocheng-xchengx.github.io/postcardDesign/postcard.html" + queryParams
+  //console.log("queryParams:"+fullLink);
+  tweet_link = "https://twitter.com/intent/tweet?text=" + fullLink;
+  
+  window.open(tweet_link);
+}
 
 //Postcard theme starts here
 function getRandomIntInclusive(min, max) {
