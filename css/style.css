@@ -87,6 +87,9 @@ button{
 .save {
   background-color: #690c9c;
 }
+.twitter{
+  background-color: rgba(29,161,242,1.00);
+}
 .button-container{
   display: flex;
   width: 60vw;
