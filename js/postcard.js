@@ -49,6 +49,7 @@ document.getElementsByTagName("i")[0].addEventListener("mouseout", (event) => {
   document.getElementsByTagName("i")[0].setAttribute("class", "far fa-envelope");
 })
 
+//change save button representation when hovered.
 document.getElementsByTagName("i")[1].addEventListener("mouseover", (event) => {
   document.getElementsByTagName("i")[1].removeAttribute("class", "far fa-save");
   document.getElementsByTagName("i")[1].setAttribute("class", "fas fa-save");
@@ -58,6 +59,18 @@ document.getElementsByTagName("i")[1].addEventListener("mouseout", (event) => {
   document.getElementsByTagName("i")[1].removeAttribute("class", "fas fa-save");
   document.getElementsByTagName("i")[1].setAttribute("class", "far fa-save");
 })
+
+//change twitter button representation when hovered.
+document.getElementsByTagName("i")[2].addEventListener("mouseover", (event) => {
+  document.getElementsByTagName("i")[2].style.color = "rgb(121, 75, 196)";
+})
+
+document.getElementsByTagName("i")[2].addEventListener("mouseout", (event) => {
+  document.getElementsByTagName("i")[2].style.color = "white";
+})
+
+
+
 
 function saveAs(uri, filename) {
   var link = document.createElement('a');
@@ -81,7 +94,7 @@ function saveAs(uri, filename) {
 
 // Snapshot
 function takeShot() {
-  html2canvas(document.getElementById("card"), {allowTaint: true}).then(function(canvas) 
+  html2canvas(document.getElementById("card"), {allowTaint: true}).then(function(canvas)
 	{
 	  document.getElementById("output").appendChild(canvas);
 	  saveAs(canvas.toDataURL(), 'postcard.png');
@@ -97,13 +110,15 @@ function sendEmail() {
   queryParams = `?s=${senderV}%26r=${receiverV}%26c=${contentV}%26a=${answersV}`;
   fullLink = "https://xiaocheng-xchengx.github.io/postcardDesign/postcard.html" + queryParams
   console.log("queryParams:"+fullLink);
-  
+
   subject = `Postcard from ${sender}`
   body = `Check out the postcard: ${fullLink}`
   console.log("body:"+body);
-  
+
   window.open(`mailto:?subject=${subject}&body=${body}`);
 }
+
+
 
 //Postcard theme starts here
 function getRandomIntInclusive(min, max) {
@@ -114,30 +129,33 @@ function getRandomIntInclusive(min, max) {
 
 function putRandomShape(x, y, color) {
   var num = getRandomIntInclusive(1, 4);
-  console.log(num);
 
   if (num == 1) {
-    var shape = two.makeCircle(x, y, 10);
+    var shape = two.makeCircle(x, y, 12);
     shape.fill = color;
     shape.rotation = getRandomIntInclusive(-0.3, 0.3);
+		shape.noStroke()
   }
 
   if (num == 2) {
-    var shape = two.makeRoundedRectangle(x, y, 20, 10, 6);
+    var shape = two.makeRoundedRectangle(x, y, 20*1.2, 10*1.2, 6);
     shape.fill = color;
     shape.rotation = getRandomIntInclusive(-0.3, 0.3);
+		shape.noStroke()
   }
 
   if (num == 3) {
-    var shape = two.makePolygon(x, y, 10, 3);
+    var shape = two.makePolygon(x, y, 12, 3);
     shape.fill = color;
     shape.rotation = getRandomIntInclusive(-0.3, 0.3);
+		shape.noStroke()
   }
 
   if (num == 4) {
-    var shape = two.makeStar(x, y, 20, 10, 7);
+    var shape = two.makeStar(x, y, 20*1.2, 10*1.2, 7);
     shape.fill = color;
     shape.rotation = getRandomIntInclusive(-0.3, 0.3);
+		shape.noStroke()
   }
 }
 
@@ -271,11 +289,7 @@ function getMainColor(qOneAnswer) {
 }
 
 if (stored_answers[1] == 0) {
-  console.log('hi');
-  // var xxx = two.makePolygon(280, 280, 15, 3);
-  // xxx.fill = 'yellow';
-  // xxx.rotation = -0.3;
-
+  //sunny
   colorArray = getMainColor(qOneAnswer);
   var color = `hsl(${colorArray[0]}, ${colorArray[1]}, ${colorArray[2]})`;
 
@@ -297,26 +311,34 @@ if (stored_answers[1] == 0) {
   for (let x = 0; x <= 270; x+=90){
     var rainy1 = two.makeCurve(40+x, 30, 20+x, 70, 40+x, 110, 20+x, 150, 40+x, 190, 20+x, 230, 40+x, 270, true);
     var rainy2 = two.makeCurve(70+x, 70, 90+x, 110, 70+x, 150, 90+x, 190, 70+x, 230, true);
-    rainy1.stroke = "black";
+		colorArray = getMainColor(qOneAnswer);
+		var color = `hsl(${colorArray[0]}, ${colorArray[1]}, ${colorArray[2]})`;
+    rainy1.stroke = color;
     rainy1.linewidth = "5px";
-    rainy1.fill = "rgb(0,0,0,0)";
-    rainy2.stroke = "black";
+    rainy1.noFill();
+    rainy2.stroke = color;
     rainy2.linewidth = "5px";
-    rainy2.fill = "rgb(0,0,0,0)";
+    rainy2.noFill();
   }
 } else if (stored_answers[1] == 2) {
   //cloudy
   for (let x1 = 20; x1 <= 260; x1+= 60){
     for (let y1 = 50; y1 <= 280; y1+=100) {
       var cloudy1 = two.makePolygon(x1, y1, 15, 3);
-      cloudy1.fill = 'yellow';
+			colorArray = getMainColor(qOneAnswer);
+      var color = `hsl(${colorArray[0]}, ${colorArray[1]}, ${colorArray[2]})`;
+      cloudy1.fill = color;
+			cloudy1.noStroke()
       cloudy1.rotation = 0.3;
     }
   }
   for (let x2 = 50; x2 <= 260; x2+= 60){
     for (let y2 = 100; y2 <= 280; y2+=100) {
       var cloudy2 = two.makePolygon(x2, y2, 15, 3);
-      cloudy2.fill = 'yellow';
+			colorArray = getMainColor(qOneAnswer);
+      var color = `hsl(${colorArray[0]}, ${colorArray[1]}, ${colorArray[2]})`;
+      cloudy2.fill = color;
+			cloudy2.noStroke()
       cloudy2.rotation = -0.3;
     }
   }
