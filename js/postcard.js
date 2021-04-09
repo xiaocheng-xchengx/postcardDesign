@@ -75,6 +75,13 @@ document.getElementsByTagName("i")[2].addEventListener("mouseout", (event) => {
 
 
 
+// Snapshot
+function takeShot() {
+  html2canvas(document.getElementById("card"), {allowTaint: true}).then(function(canvas)
+	{
+	  saveAs(canvas.toDataURL(), 'postcard.png');
+	});
+}
 
 function saveAs(uri, filename) {
   var link = document.createElement('a');
@@ -95,14 +102,6 @@ function saveAs(uri, filename) {
   }
 }
 
-// Snapshot
-function takeShot() {
-  html2canvas(document.getElementById("card"), {allowTaint: true}).then(function(canvas)
-	{
-	  // document.getElementById("output").appendChild(canvas);
-	  saveAs(canvas.toDataURL(), 'postcard.png');
-	});
-}
 
 // Send email
 function sendEmail() {
@@ -289,28 +288,6 @@ if (stored_answers[1] == 0) {
     for (let y1 = 50; y1 <= 280; y1+=100) {
       colorArray = getMainColor(qOneAnswer);
       var color = `hsl(${colorArray[0]}, ${colorArray[1]}, ${colorArray[2]})`;
-
-      // var colors = [
-      //   'red',
-      //   'black',
-      //   'yellow'
-      // ];
-      // var linearGradient = two.makeLinearGradient(
-      //   x1 - 10, y1 - 10,
-      //   x1 + 30, y1 + 30,
-      //   new Two.Stop(0, colors[0]),
-      //   new Two.Stop(1, colors[1]),
-      //   new Two.Stop(2, colors[2])
-      // );
-      //
-      // var radialGradient = two.makeRadialGradient(
-      //   x1, y1, 2,
-      //   new Two.Stop(0, colors[0]),
-      //   new Two.Stop(1, colors[1]),
-      //   new Two.Stop(2, colors[2])
-      // );
-      //
-      // snowy1.fill = radialGradient;
 
       var snowy1 = two.makeStar(x1, y1, 10, 20, 6);
       snowy1.fill = color;
