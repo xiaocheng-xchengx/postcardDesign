@@ -89,6 +89,7 @@ function saveAs(uri, filename) {
     link.href = uri;
     link.download = filename;
 
+		//obtained from stackoverflow
     //Firefox requires the link to be in the body
     document.body.appendChild(link);
 
@@ -172,6 +173,7 @@ function putRandomShape(x, y, color) {
 
 // Set background image
 var elem = document.getElementsByClassName('themeImg')[0];
+
 if (stored_answers[2] == 0) {
     // Family
     elem.style.backgroundImage = "url('./img/family.png')";
